@@ -34,12 +34,12 @@ int const RedLed=6;
 int const GreenLed=5;
 int const Buzzer=8;
 
-String Log;
 String Name;//user name
 long Number;//user number
+String ExcelName="Logs";
+int L=0;
 int n ;//The number of card you want to detect (optional)  
 int ID=1;
-
 void setup() {
   //lcd.begin(16, 2);
   Serial.begin(9600); // Initialize serial communications with the PC
@@ -139,6 +139,7 @@ void loop() {
       Serial.print(",");
       Serial.println("TIME");
       ID=ID+1;
+      n++;//(optional)
       digitalWrite(GreenLed,HIGH);
       digitalWrite(RedLed,LOW);
       digitalWrite(Buzzer,HIGH);
@@ -193,10 +194,19 @@ digitalWrite(GreenLed,LOW);
 digitalWrite(RedLed,LOW);
 card_ID="";
 
-//if you want to close the Excel when all card had detected and save Excel file in Names Folder. in my case i have just 2 card (optional)
-/*if(n==2){
-    Serial.println("SAVEWORKBOOKAS,Names/WorkNames");
-    Serial.println("FORCEEXCELQUIT");
+//if you want to close the Excel when all card had detected and save Excel file in Names Folder. (optional)
+/*
+if(n==4){
+    ExcelName +=L;
+    L++;
+    Serial.print("SAVEWORKBOOKAS,");
+    Serial.print("Names/");
+    Serial.println(ExcelName);
+    //Serial.println("FORCEEXCELQUIT");
+    Serial.println("CLEARDATA");
+    n=0;
+    ID=1;
+    ExcelName="Logs";
     }*/
 }
     
